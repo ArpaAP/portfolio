@@ -10,6 +10,7 @@ import {
   useMotionValue,
   animate,
   AnimationSequence,
+  useTransform,
 } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
@@ -25,8 +26,41 @@ export default function HomePage() {
   const introAnimControls = useRef<AnimationPlaybackControls>()
   const aboutAnimControls = useRef<AnimationPlaybackControls>()
 
+  // Motion values
+
   const introScrollProgress = useMotionValue(0)
   const aboutScrollProgress = useMotionValue(0)
+
+  const aboutText1Count = useMotionValue(0)
+  const aboutText2Count = useMotionValue(0)
+  const aboutText3Count = useMotionValue(0)
+
+  // constants
+
+  const aboutText1 = 'Software makes'
+  const aboutText2 = 'my imagination'
+  const aboutText3 = 'a reality'
+
+  const aboutText1CountRounded = useTransform(aboutText1Count, (latest) =>
+    Math.round(latest),
+  )
+  const aboutDisplayText1 = useTransform(aboutText1CountRounded, (latest) =>
+    aboutText1.slice(0, latest),
+  )
+
+  const aboutText2CountRounded = useTransform(aboutText2Count, (latest) =>
+    Math.round(latest),
+  )
+  const aboutDisplayText2 = useTransform(aboutText2CountRounded, (latest) =>
+    aboutText2.slice(0, latest),
+  )
+
+  const aboutText3CountRounded = useTransform(aboutText3Count, (latest) =>
+    Math.round(latest),
+  )
+  const aboutDisplayText3 = useTransform(aboutText3CountRounded, (latest) =>
+    aboutText3.slice(0, latest),
+  )
 
   useMotionValueEvent(scrollY, 'change', (later) => {
     if (!introAnimControls.current) return
@@ -35,30 +69,23 @@ export default function HomePage() {
     let introSection = introSectionRef.current!
 
     let newIntroScrollProgress =
-      -introSection.getBoundingClientRect().top / introSection.offsetHeight
+      -introSection.getBoundingClientRect().top / window.innerHeight
 
-    if (0 <= newIntroScrollProgress && newIntroScrollProgress <= 1) {
-      introAnimControls.current.time =
-        Math.min(newIntroScrollProgress, 1) * introAnimControls.current.duration
-    } else if (newIntroScrollProgress < 0) {
+    if (0 <= newIntroScrollProgress) {
+      introAnimControls.current.time = newIntroScrollProgress
+    } else {
       introAnimControls.current.time = 0
-    } else if (newIntroScrollProgress > 1) {
-      introAnimControls.current.time = 1
     }
 
     let aboutSection = aboutSectionRef.current!
 
     let newAboutSectionProgress =
-      -aboutSection.getBoundingClientRect().top / aboutSection.offsetHeight
+      -aboutSection.getBoundingClientRect().top / window.innerHeight
 
-    if (0 <= newAboutSectionProgress && newAboutSectionProgress <= 1) {
-      aboutAnimControls.current.time =
-        Math.min(newAboutSectionProgress, 1) *
-        aboutAnimControls.current.duration
-    } else if (newAboutSectionProgress < 0) {
+    if (0 <= newAboutSectionProgress) {
+      aboutAnimControls.current.time = newAboutSectionProgress
+    } else {
       aboutAnimControls.current.time = 0
-    } else if (newAboutSectionProgress > 1) {
-      aboutAnimControls.current.time = 1
     }
   })
 
@@ -79,18 +106,42 @@ export default function HomePage() {
     () => [
       [aboutScrollProgress, 1, { duration: 1 }],
       [
-        '#aboutSection .welcomeTitle',
-        { opacity: 1, scale: 2 },
-        { duration: 0.2 },
+        aboutText1Count,
+        aboutText1.length,
+        { type: 'tween', duration: 1.2, ease: 'easeInOut', at: 0 },
       ],
-      ['#aboutSection .toTitle', { opacity: 1, scale: 2 }, { duration: 0.2 }],
       [
-        '#aboutSection .welcomeTitle',
-        { opacity: 0 },
-        { duration: 0.2, delay: 0.5 },
+        aboutText2Count,
+        aboutText2.length,
+        { type: 'tween', duration: 1.5, ease: 'easeInOut', at: 1.5 },
+      ],
+      [
+        aboutText3Count,
+        aboutText3.length,
+        { type: 'tween', duration: 1, ease: 'easeInOut', at: 3.2 },
+      ],
+      [
+        '#aboutSection .Title1',
+        { opacity: 1, scale: 1 },
+        { duration: 1.2, at: 0 },
+      ],
+      [
+        '#aboutSection .Title2',
+        { opacity: 1, scale: 1 },
+        { duration: 1.5, at: 1.5 },
+      ],
+      [
+        '#aboutSection .Title3',
+        { opacity: 1, scale: 1 },
+        { duration: 1, at: 3.2 },
+      ],
+      [
+        '#aboutSection .Titles',
+        { opacity: 0, scale: 0.9 },
+        { duration: 0.8, at: 4.2, ease: 'easeInOut' },
       ],
     ],
-    [aboutScrollProgress],
+    [aboutScrollProgress, aboutText1Count, aboutText2Count, aboutText3Count],
   )
 
   useEffect(() => {
@@ -98,6 +149,11 @@ export default function HomePage() {
     introAnimControls.current.pause()
     aboutAnimControls.current = animate(aboutSectionTimeline)
     aboutAnimControls.current.pause()
+
+    return () => {
+      introAnimControls.current?.stop()
+      aboutAnimControls.current?.stop()
+    }
   }, [
     aboutScrollProgress,
     aboutSectionTimeline,
@@ -186,11 +242,26 @@ export default function HomePage() {
         <section
           id="aboutSection"
           ref={aboutSectionRef}
-          className="container mx-auto px-24 py-12 min-h-[4000px]"
+          className="container mx-auto px-24 py-12 min-h-[8000px]"
         >
-          <div className="fixed inset-0 flex flex-col gap-8 items-center justify-center">
-            <motion.h1 initial={{ opacity: 0 }} className="welcomeTitle">
-              상상을 현실로.
+          <div className="Titles fixed inset-0 flex flex-col gap-8 items-center justify-center">
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.6 }}
+              className="Title1 text-6xl"
+            >
+              {aboutDisplayText1}
+            </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, scale: 1 }}
+              className="Title2 text-6xl font-medium"
+            >
+              {aboutDisplayText2}
+            </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, scale: 1 }}
+              className="Title3 text-6xl"
+            >
+              {aboutDisplayText3}
             </motion.h1>
           </div>
         </section>
