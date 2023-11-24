@@ -1,6 +1,6 @@
 'use client'
 
-import { TbChevronsDown, TbBrandGithub } from 'react-icons/tb'
+import { TbChevronsDown, TbBrandGithub, TbMail, TbPhone } from 'react-icons/tb'
 import { FaGithub } from 'react-icons/fa'
 import {
   motion,
@@ -13,11 +13,14 @@ import {
   useTransform,
 } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import classNames from 'classnames'
 
 export default function HomePage() {
   const { scrollY } = useScroll()
 
   const [currentSection, setCurrentSection] = useState(0)
+
+  const [visibleIntroText, setVisibleIntroText] = useState(false)
 
   const animControls = useRef<AnimationPlaybackControls>()
 
@@ -66,6 +69,12 @@ export default function HomePage() {
     } else {
       animControls.current.time = 0
     }
+
+    if (newScrollProgress >= 1 && newScrollProgress <= 6.5) {
+      setVisibleIntroText(true)
+    } else {
+      setVisibleIntroText(false)
+    }
   })
 
   const timeline = useMemo<AnimationSequence>(
@@ -76,7 +85,11 @@ export default function HomePage() {
         { opacity: [1, 0] },
         { duration: 0.3, delay: 0.1, ease: 'easeInOut' },
       ],
-      ['#background', { opacity: [0, 1] }, { duration: 0.3, at: 0.3 }],
+      [
+        'main',
+        { backgroundColor: ['#ededfb', '#27272A'] },
+        { duration: 0.3, at: 0.3 },
+      ],
 
       [
         introText1Count,
@@ -110,10 +123,22 @@ export default function HomePage() {
       ],
       [
         '#introAnimSection .Titles',
-        { opacity: [1, 0], scale: 3, filter: 'blur(8px)' },
-        { duration: 1.4, at: 5.5, ease: 'easeInOut' },
+        {
+          opacity: [1, 0],
+          scale: 3,
+          filter: 'blur(8px)',
+        },
+        {
+          duration: 1.4,
+          at: 5.5,
+          ease: 'easeInOut',
+        },
       ],
-      ['#background', { opacity: [1, 0] }, { duration: 0.3, at: 6.5 }],
+      [
+        'main',
+        { backgroundColor: ['#27272A', '#ededfb'] },
+        { duration: 0.3, at: 6.5 },
+      ],
     ],
 
     [introText1Count, introText2Count, introText3Count, scrollProgress],
@@ -130,11 +155,6 @@ export default function HomePage() {
 
   return (
     <motion.main>
-      <motion.div
-        id="background"
-        initial={{ opacity: 0 }}
-        className="fixed inset-0 -z bg-zinc-800"
-      />
       <section
         id="introSection"
         className="container mx-auto px-8 sm:px-12 lg:px-24 h-screen relative"
@@ -210,7 +230,12 @@ export default function HomePage() {
           className="container mx-auto px-24 py-12"
         >
           <div className="min-h-[600vh]">
-            <div className="Titles fixed inset-0 flex flex-col gap-8 items-center justify-center">
+            <motion.div
+              className={classNames(
+                'Titles fixed inset-0 flex flex-col gap-8 items-center justify-center',
+                !visibleIntroText && 'hidden',
+              )}
+            >
               <motion.h1
                 initial={{ opacity: 0, scale: 0.6 }}
                 className="Title1 text-6xl"
@@ -229,7 +254,7 @@ export default function HomePage() {
               >
                 {introDisplayText3}
               </motion.h1>
-            </div>
+            </motion.div>
           </div>
         </section>
       </div>
@@ -258,7 +283,7 @@ export default function HomePage() {
             initial={{ opacity: 0, translateX: 100 }}
             whileInView={{ opacity: 1, translateX: 0 }}
             viewport={{ once: true, amount: 'all' }}
-            transition={{ duration: 0.7, delay: 0.8 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
           >
             <div className="flex flex-row-reverse gap-5 items-center">
               <div className="text-black/50 text-xl">BIRTHDAY</div>
@@ -272,7 +297,7 @@ export default function HomePage() {
             initial={{ opacity: 0, translateX: -100 }}
             whileInView={{ opacity: 1, translateX: 0 }}
             viewport={{ once: true, amount: 'all' }}
-            transition={{ duration: 0.7, delay: 1.6 }}
+            transition={{ duration: 0.7, delay: 1 }}
           >
             <div className="flex gap-5 items-center">
               <div className="text-black/50 text-xl">EDUCATION</div>
@@ -281,10 +306,45 @@ export default function HomePage() {
               <div>
                 Hosan High School,
                 <br />
-                3rd Grade
+                3rd Grade (2023)
               </div>
             </h1>
           </motion.div>
+
+          <div className="flex gap-4 items-center my-8">
+            <hr className="w-full border-violet-600/20" />
+            <h2 className="flex-shrink-0 text-zinc-700 font-light">
+              Contact Me
+            </h2>
+            <hr className="w-full border-violet-600/20" />
+          </div>
+
+          <div className="mx-12 grid grid-cols-3 gap-8 text-zinc-800/80">
+            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+              <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
+                <TbMail />
+                <span>EMAIL</span>
+              </div>
+
+              <a
+                href="mailto:me@arpaap.dev"
+                className="text-zinc-700 underline"
+              >
+                me@arpaap.dev
+              </a>
+            </div>
+
+            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+              <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
+                <TbPhone />
+                <span>PHONE</span>
+              </div>
+
+              <a href="tel:010-4001-3425" className="text-zinc-700 underline">
+                010-4001-3425
+              </a>
+            </div>
+          </div>
         </section>
       </div>
 
