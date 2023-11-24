@@ -19,147 +19,114 @@ export default function HomePage() {
 
   const [currentSection, setCurrentSection] = useState(0)
 
-  const introSectionRef = useRef<HTMLDivElement>(null)
-
-  const aboutSectionRef = useRef<HTMLDivElement>(null)
-
-  const introAnimControls = useRef<AnimationPlaybackControls>()
-  const aboutAnimControls = useRef<AnimationPlaybackControls>()
+  const animControls = useRef<AnimationPlaybackControls>()
 
   // Motion values
 
-  const introScrollProgress = useMotionValue(0)
-  const aboutScrollProgress = useMotionValue(0)
+  const scrollProgress = useMotionValue(0)
 
-  const aboutText1Count = useMotionValue(0)
-  const aboutText2Count = useMotionValue(0)
-  const aboutText3Count = useMotionValue(0)
+  const introText1Count = useMotionValue(0)
+  const introText2Count = useMotionValue(0)
+  const introText3Count = useMotionValue(0)
 
   // constants
 
-  const aboutText1 = 'Software makes'
-  const aboutText2 = 'my imagination'
-  const aboutText3 = 'a reality'
+  const introText1 = 'Software makes'
+  const introText2 = 'my imagination'
+  const introText3 = 'a reality'
 
-  const aboutText1CountRounded = useTransform(aboutText1Count, (latest) =>
+  const aboutText1CountRounded = useTransform(introText1Count, (latest) =>
     Math.round(latest),
   )
-  const aboutDisplayText1 = useTransform(aboutText1CountRounded, (latest) =>
-    aboutText1.slice(0, latest),
+  const introDisplayText1 = useTransform(aboutText1CountRounded, (latest) =>
+    introText1.slice(0, latest),
   )
 
-  const aboutText2CountRounded = useTransform(aboutText2Count, (latest) =>
+  const aboutText2CountRounded = useTransform(introText2Count, (latest) =>
     Math.round(latest),
   )
-  const aboutDisplayText2 = useTransform(aboutText2CountRounded, (latest) =>
-    aboutText2.slice(0, latest),
+  const introDisplayText2 = useTransform(aboutText2CountRounded, (latest) =>
+    introText2.slice(0, latest),
   )
 
-  const aboutText3CountRounded = useTransform(aboutText3Count, (latest) =>
+  const aboutText3CountRounded = useTransform(introText3Count, (latest) =>
     Math.round(latest),
   )
-  const aboutDisplayText3 = useTransform(aboutText3CountRounded, (latest) =>
-    aboutText3.slice(0, latest),
+  const introDisplayText3 = useTransform(aboutText3CountRounded, (latest) =>
+    introText3.slice(0, latest),
   )
 
   useMotionValueEvent(scrollY, 'change', (later) => {
-    if (!introAnimControls.current) return
-    if (!aboutAnimControls.current) return
+    if (!animControls.current) return
 
-    let introSection = introSectionRef.current!
+    let newScrollProgress = later / window.innerHeight
 
-    let newIntroScrollProgress =
-      -introSection.getBoundingClientRect().top / window.innerHeight
-
-    if (0 <= newIntroScrollProgress) {
-      introAnimControls.current.time = newIntroScrollProgress
+    if (0 <= newScrollProgress) {
+      animControls.current.time = newScrollProgress
     } else {
-      introAnimControls.current.time = 0
-    }
-
-    let aboutSection = aboutSectionRef.current!
-
-    let newAboutSectionProgress =
-      -aboutSection.getBoundingClientRect().top / window.innerHeight
-
-    if (0 <= newAboutSectionProgress) {
-      aboutAnimControls.current.time = newAboutSectionProgress
-    } else {
-      aboutAnimControls.current.time = 0
+      animControls.current.time = 0
     }
   })
 
-  const introSectionTimeline = useMemo<AnimationSequence>(
+  const timeline = useMemo<AnimationSequence>(
     () => [
-      [introScrollProgress, 1, { duration: 1 }],
+      [scrollProgress, 1, { duration: 1 }],
       [
         '#introSection',
-        { opacity: 0 },
+        { opacity: [1, 0] },
         { duration: 0.3, delay: 0.1, ease: 'easeInOut' },
       ],
-      ['#background', { opacity: 1 }, { duration: 0.3 }],
-    ],
-    [introScrollProgress],
-  )
+      ['#background', { opacity: [0, 1] }, { duration: 0.3, at: 0.3 }],
 
-  const aboutSectionTimeline = useMemo<AnimationSequence>(
-    () => [
-      [aboutScrollProgress, 1, { duration: 1 }],
       [
-        aboutText1Count,
-        aboutText1.length,
-        { type: 'tween', duration: 1.2, ease: 'easeInOut', at: 0 },
+        introText1Count,
+        introText1.length,
+        { type: 'tween', duration: 1.2, ease: 'easeInOut', at: 1 },
       ],
       [
-        aboutText2Count,
-        aboutText2.length,
-        { type: 'tween', duration: 1.5, ease: 'easeInOut', at: 1.5 },
+        introText2Count,
+        introText2.length,
+        { type: 'tween', duration: 1.5, ease: 'easeInOut', at: 2.5 },
       ],
       [
-        aboutText3Count,
-        aboutText3.length,
-        { type: 'tween', duration: 1, ease: 'easeInOut', at: 3.2 },
+        introText3Count,
+        introText3.length,
+        { type: 'tween', duration: 1, ease: 'easeInOut', at: 4.2 },
       ],
       [
-        '#aboutSection .Title1',
+        '#introAnimSection .Title1',
         { opacity: 1, scale: 1 },
-        { duration: 1.2, at: 0 },
+        { duration: 1.2, at: 1 },
       ],
       [
-        '#aboutSection .Title2',
+        '#introAnimSection .Title2',
         { opacity: 1, scale: 1 },
-        { duration: 1.5, at: 1.5 },
+        { duration: 1.5, at: 2.5 },
       ],
       [
-        '#aboutSection .Title3',
+        '#introAnimSection .Title3',
         { opacity: 1, scale: 1 },
-        { duration: 1, at: 3.2 },
+        { duration: 1, at: 4.2 },
       ],
       [
-        '#aboutSection .Titles',
-        { opacity: 0, scale: 0.9 },
-        { duration: 0.8, at: 4.2, ease: 'easeInOut' },
+        '#introAnimSection .Titles',
+        { opacity: [1, 0], scale: 3, filter: 'blur(8px)' },
+        { duration: 1.4, at: 5.5, ease: 'easeInOut' },
       ],
+      ['#background', { opacity: [1, 0] }, { duration: 0.3, at: 6.5 }],
     ],
-    [aboutScrollProgress, aboutText1Count, aboutText2Count, aboutText3Count],
+
+    [introText1Count, introText2Count, introText3Count, scrollProgress],
   )
 
   useEffect(() => {
-    introAnimControls.current = animate(introSectionTimeline)
-    introAnimControls.current.pause()
-    aboutAnimControls.current = animate(aboutSectionTimeline)
-    aboutAnimControls.current.pause()
+    animControls.current = animate(timeline)
+    animControls.current.pause()
 
     return () => {
-      introAnimControls.current?.stop()
-      aboutAnimControls.current?.stop()
+      animControls.current?.stop()
     }
-  }, [
-    aboutScrollProgress,
-    aboutSectionTimeline,
-    introScrollProgress,
-    introSectionTimeline,
-  ])
+  }, [scrollProgress, timeline])
 
   return (
     <motion.main>
@@ -170,7 +137,6 @@ export default function HomePage() {
       />
       <section
         id="introSection"
-        ref={introSectionRef}
         className="container mx-auto px-8 sm:px-12 lg:px-24 h-screen relative"
       >
         <a
@@ -240,30 +206,63 @@ export default function HomePage() {
 
       <div className="text-white">
         <section
-          id="aboutSection"
-          ref={aboutSectionRef}
-          className="container mx-auto px-24 py-12 min-h-[8000px]"
+          id="introAnimSection"
+          className="container mx-auto px-24 py-12"
         >
-          <div className="Titles fixed inset-0 flex flex-col gap-8 items-center justify-center">
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.6 }}
-              className="Title1 text-6xl"
-            >
-              {aboutDisplayText1}
-            </motion.h1>
-            <motion.h1
-              initial={{ opacity: 0, scale: 1 }}
-              className="Title2 text-6xl font-medium"
-            >
-              {aboutDisplayText2}
-            </motion.h1>
-            <motion.h1
-              initial={{ opacity: 0, scale: 1 }}
-              className="Title3 text-6xl"
-            >
-              {aboutDisplayText3}
-            </motion.h1>
+          <div className="min-h-[600vh]">
+            <div className="Titles fixed inset-0 flex flex-col gap-8 items-center justify-center">
+              <motion.h1
+                initial={{ opacity: 0, scale: 0.6 }}
+                className="Title1 text-6xl"
+              >
+                {introDisplayText1}
+              </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, scale: 1 }}
+                className="Title2 text-6xl font-medium"
+              >
+                {introDisplayText2}
+              </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, scale: 1 }}
+                className="Title3 text-6xl"
+              >
+                {introDisplayText3}
+              </motion.h1>
+            </div>
           </div>
+        </section>
+      </div>
+
+      <div>
+        <section
+          id="aboutSection"
+          className="container mx-auto px-24 py-12 min-h-[200vh] mt-48 flex flex-col gap-24"
+        >
+          <motion.div
+            initial={{ opacity: 0, translateX: -100 }}
+            whileInView={{ opacity: 1, translateX: 0 }}
+            viewport={{ once: true, amount: 'all' }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <div className="flex gap-5 items-center pb-4">
+              <div className="text-black/50 text-xl">MY NAME IS</div>
+            </div>
+            <h1 className="text-black/75 font-medium text-7xl">Buyeon Hwang</h1>
+          </motion.div>
+
+          <motion.div
+            className="text-right"
+            initial={{ opacity: 0, translateX: 100 }}
+            whileInView={{ opacity: 1, translateX: 0 }}
+            viewport={{ once: true, amount: 'all' }}
+            transition={{ duration: 1, delay: 1.5 }}
+          >
+            <div className="flex flex-row-reverse gap-5 items-center pb-4">
+              <div className="text-black/50 text-xl">BIRTHDAY</div>
+            </div>
+            <h1 className="text-black/75 font-medium text-7xl">Oct 30, 2005</h1>
+          </motion.div>
         </section>
       </div>
 
