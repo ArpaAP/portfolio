@@ -237,18 +237,20 @@ export default function HomePage() {
       <div>
         <section
           id="aboutSection"
-          className="container mx-auto px-24 py-12 min-h-[200vh] mt-48 flex flex-col gap-24"
+          className="container mx-auto px-24 py-12 min-h-[200vh] mt-48 flex flex-col gap-16"
         >
           <motion.div
             initial={{ opacity: 0, translateX: -100 }}
             whileInView={{ opacity: 1, translateX: 0 }}
             viewport={{ once: true, amount: 'all' }}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 0.7, delay: 0 }}
           >
-            <div className="flex gap-5 items-center pb-4">
+            <div className="flex gap-5 items-center">
               <div className="text-black/50 text-xl">MY NAME IS</div>
             </div>
-            <h1 className="text-black/75 font-medium text-7xl">Buyeon Hwang</h1>
+            <h1 className="text-black/75 font-medium text-6xl leading-[1.4]">
+              Buyeon Hwang
+            </h1>
           </motion.div>
 
           <motion.div
@@ -256,12 +258,32 @@ export default function HomePage() {
             initial={{ opacity: 0, translateX: 100 }}
             whileInView={{ opacity: 1, translateX: 0 }}
             viewport={{ once: true, amount: 'all' }}
-            transition={{ duration: 1, delay: 1.5 }}
+            transition={{ duration: 0.7, delay: 0.8 }}
           >
-            <div className="flex flex-row-reverse gap-5 items-center pb-4">
+            <div className="flex flex-row-reverse gap-5 items-center">
               <div className="text-black/50 text-xl">BIRTHDAY</div>
             </div>
-            <h1 className="text-black/75 font-medium text-7xl">Oct 30, 2005</h1>
+            <h1 className="text-black/75 font-medium text-6xl leading-[1.4]">
+              Oct 30, 2005
+            </h1>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, translateX: -100 }}
+            whileInView={{ opacity: 1, translateX: 0 }}
+            viewport={{ once: true, amount: 'all' }}
+            transition={{ duration: 0.7, delay: 1.6 }}
+          >
+            <div className="flex gap-5 items-center">
+              <div className="text-black/50 text-xl">EDUCATION</div>
+            </div>
+            <h1 className="text-black/75 font-medium text-6xl leading-[1.4]">
+              <div>
+                Hosan High School,
+                <br />
+                3rd Grade
+              </div>
+            </h1>
           </motion.div>
         </section>
       </div>
