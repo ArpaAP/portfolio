@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar'
 import './globals.css'
 import Head from 'next/head'
 import Script from 'next/script'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 export const metadata: Metadata = {
   title: 'Buyeon Hwang',
@@ -21,24 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TRACKING_ID}`}
-        />
-        <Script
-          id="gtag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-              });
-            `,
-          }}
-        />
+        <GoogleAnalytics />
       </head>
       <body>
         <Navbar />
