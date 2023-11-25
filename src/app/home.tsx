@@ -1,6 +1,16 @@
 'use client'
 
-import { TbChevronsDown, TbBrandGithub, TbMail, TbPhone } from 'react-icons/tb'
+import {
+  TbChevronsDown,
+  TbBrandGithub,
+  TbMail,
+  TbPhone,
+  TbBrandInstagram,
+  TbBrandDiscord,
+  TbBrandX,
+  TbBrandLinkedin,
+  TbBrandSamsungpass,
+} from 'react-icons/tb'
 import { FaGithub } from 'react-icons/fa'
 import {
   motion,
@@ -106,27 +116,41 @@ export default function HomePage() {
         introText3.length,
         { type: 'tween', duration: 1, ease: 'easeInOut', at: 4.2 },
       ],
+      ['#introAnimSection .Title1', { opacity: 1 }, { duration: 1.2, at: 1 }],
+      ['#introAnimSection .Title2', { opacity: 1 }, { duration: 1.5, at: 2.5 }],
+      ['#introAnimSection .Title3', { opacity: 1 }, { duration: 1, at: 4.2 }],
       [
-        '#introAnimSection .Title1',
-        { opacity: 1, scale: 1 },
-        { duration: 1.2, at: 1 },
+        '#introAnimSection .Titles',
+        { scale: 0.8 },
+        {
+          duration: 1.2,
+          at: 1,
+          ease: 'easeInOut',
+        },
       ],
       [
-        '#introAnimSection .Title2',
-        { opacity: 1, scale: 1 },
-        { duration: 1.5, at: 2.5 },
+        '#introAnimSection .Titles',
+        { scale: 0.9 },
+        {
+          duration: 1.5,
+          at: 2.5,
+          ease: 'easeInOut',
+        },
       ],
       [
-        '#introAnimSection .Title3',
-        { opacity: 1, scale: 1 },
-        { duration: 1, at: 4.2 },
+        '#introAnimSection .Titles',
+        { scale: 1 },
+        {
+          duration: 1,
+          at: 4.2,
+          ease: 'easeInOut',
+        },
       ],
       [
         '#introAnimSection .Titles',
         {
           opacity: [1, 0],
           scale: 3,
-          filter: 'blur(8px)',
         },
         {
           duration: 1.4,
@@ -203,7 +227,7 @@ export default function HomePage() {
                 delay: 0.8,
               }}
             >
-              안녕하세요, 소프트웨어 개발자 <b>알파</b>입니다.
+              안녕하세요, 소프트웨어 개발자 <b>황 부 연</b> 입니다.
             </motion.div>
           </div>
         </motion.div>
@@ -231,27 +255,22 @@ export default function HomePage() {
         >
           <div className="min-h-[600vh]">
             <motion.div
+              initial={{ scale: 0.6 }}
               className={classNames(
                 'Titles fixed inset-0 flex flex-col gap-8 items-center justify-center',
                 !visibleIntroText && 'hidden',
               )}
             >
-              <motion.h1
-                initial={{ opacity: 0, scale: 0.6 }}
-                className="Title1 text-6xl"
-              >
+              <motion.h1 initial={{ opacity: 0 }} className="Title1 text-6xl">
                 {introDisplayText1}
               </motion.h1>
               <motion.h1
-                initial={{ opacity: 0, scale: 1 }}
+                initial={{ opacity: 0 }}
                 className="Title2 text-6xl font-medium"
               >
                 {introDisplayText2}
               </motion.h1>
-              <motion.h1
-                initial={{ opacity: 0, scale: 1 }}
-                className="Title3 text-6xl"
-              >
+              <motion.h1 initial={{ opacity: 0 }} className="Title3 text-6xl">
                 {introDisplayText3}
               </motion.h1>
             </motion.div>
@@ -309,6 +328,7 @@ export default function HomePage() {
                 3rd Grade (2023)
               </div>
             </h1>
+            <div className="pt-3 text-lg">Expected to graduate</div>
           </motion.div>
 
           <div className="flex gap-4 items-center my-8">
@@ -336,12 +356,70 @@ export default function HomePage() {
 
             <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
               <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
-                <TbPhone />
-                <span>PHONE</span>
+                <TbBrandGithub />
+                <span>GitHub</span>
               </div>
 
-              <a href="tel:010-4001-3425" className="text-zinc-700 underline">
-                010-4001-3425
+              <a
+                href="https://github.com/ArpaAP"
+                target="_blank"
+                className="text-zinc-700 underline"
+              >
+                @ArpaAP
+              </a>
+            </div>
+
+            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+              <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
+                <TbBrandInstagram />
+                <span>Instagram</span>
+              </div>
+
+              <a
+                href="https://www.instagram.com/dev._.buyeon"
+                target="_blank"
+                className="text-zinc-700 underline"
+              >
+                @dev._.buyeon
+              </a>
+            </div>
+
+            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+              <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
+                <TbBrandDiscord />
+                <span>Discord</span>
+              </div>
+
+              <div className="text-zinc-700">@applekorea</div>
+            </div>
+
+            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+              <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
+                <TbBrandX />
+                <span>X</span>
+              </div>
+
+              <a
+                href="https://x.com/arpa_ap"
+                target="_blank"
+                className="text-zinc-700 underline"
+              >
+                @arpa_ap
+              </a>
+            </div>
+
+            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+              <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
+                <TbBrandLinkedin />
+                <span>Linkedin</span>
+              </div>
+
+              <a
+                href="https://linkedin.com/in/arpaap"
+                target="_blank"
+                className="text-zinc-700 underline"
+              >
+                @arpaap
               </a>
             </div>
           </div>
