@@ -13,13 +13,13 @@ export default function Navbar() {
 
   return (
     <motion.div
-      className="fixed inset-x-0 h-14 px-5 py-3 z-50 backdrop-blur-md transition-all duration-300 ease-in-out"
+      className="fixed inset-x-0 h-16 md:h-14 px-5 py-3 z-50 backdrop-blur-md transition-all duration-300 ease-in-out"
       style={{
         opacity: showNavbar ? 1 : 0,
         top: showNavbar ? -1 : -64,
       }}
     >
-      <div className="text-neutral-500 text-base font-light h-full flex items-center justify-center gap-16">
+      <div className="text-neutral-500 text-sm md:text-base font-light h-full flex items-center justify-center gap-8 md:gap-16">
         <a className="text-violet-400 font-medium">INTRO</a>
         <a>ABOUT</a>
         <a>SKILLS</a>

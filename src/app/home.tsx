@@ -10,6 +10,9 @@ import {
   TbBrandX,
   TbBrandLinkedin,
   TbBrandSamsungpass,
+  TbList,
+  TbChevronLeft,
+  TbChevronRight,
 } from 'react-icons/tb'
 import { FaGithub } from 'react-icons/fa'
 import {
@@ -153,7 +156,7 @@ export default function HomePage() {
           scale: 3,
         },
         {
-          duration: 1.4,
+          duration: 1.3,
           at: 5.5,
           ease: 'easeInOut',
         },
@@ -197,7 +200,7 @@ export default function HomePage() {
         <motion.div className="flex items-center h-full pb-10">
           <div className="my-auto">
             <motion.h1
-              className="text-5xl font-normal pb-5 text-gray-800"
+              className="text-3xl md:text-5xl font-normal pb-5 text-gray-800"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{
@@ -207,7 +210,7 @@ export default function HomePage() {
               Life is short <span className="font-light">—</span>
             </motion.h1>
             <motion.h1
-              className="text-7xl font-extrabold text-gray-800 pb-12"
+              className="text-5xl md:text-7xl font-extrabold text-gray-800 pb-12 leading-[1.25]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{
@@ -219,7 +222,7 @@ export default function HomePage() {
               <span className="font-black text-violet-500">Future</span>
             </motion.h1>
             <motion.div
-              className="font-light text-lg"
+              className="font-light md:text-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{
@@ -261,16 +264,22 @@ export default function HomePage() {
                 !visibleIntroText && 'hidden',
               )}
             >
-              <motion.h1 initial={{ opacity: 0 }} className="Title1 text-6xl">
+              <motion.h1
+                initial={{ opacity: 0 }}
+                className="Title1 text-4xl md:text-6xl"
+              >
                 {introDisplayText1}
               </motion.h1>
               <motion.h1
                 initial={{ opacity: 0 }}
-                className="Title2 text-6xl font-medium"
+                className="Title2 text-4xl md:text-6xl font-medium"
               >
                 {introDisplayText2}
               </motion.h1>
-              <motion.h1 initial={{ opacity: 0 }} className="Title3 text-6xl">
+              <motion.h1
+                initial={{ opacity: 0 }}
+                className="Title3 text-4xl md:text-6xl"
+              >
                 {introDisplayText3}
               </motion.h1>
             </motion.div>
@@ -281,18 +290,18 @@ export default function HomePage() {
       <div>
         <section
           id="aboutSection"
-          className="container mx-auto px-24 py-12 min-h-[200vh] mt-48 flex flex-col gap-16"
+          className="container mx-auto px-8 sm:px-12 lg:px-24 py-48 mt-48 flex flex-col gap-16"
         >
           <motion.div
             initial={{ opacity: 0, translateX: -100 }}
             whileInView={{ opacity: 1, translateX: 0 }}
-            viewport={{ once: true, amount: 'all' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0 }}
           >
             <div className="flex gap-5 items-center">
-              <div className="text-black/50 text-xl">MY NAME IS</div>
+              <div className="text-black/50 md:text-xl">MY NAME IS</div>
             </div>
-            <h1 className="text-black/75 font-medium text-6xl leading-[1.4]">
+            <h1 className="text-black/75 font-medium text-4xl md:text-6xl leading-[1.4]">
               Buyeon Hwang
             </h1>
           </motion.div>
@@ -301,13 +310,13 @@ export default function HomePage() {
             className="text-right"
             initial={{ opacity: 0, translateX: 100 }}
             whileInView={{ opacity: 1, translateX: 0 }}
-            viewport={{ once: true, amount: 'all' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.5 }}
           >
             <div className="flex flex-row-reverse gap-5 items-center">
-              <div className="text-black/50 text-xl">BIRTHDAY</div>
+              <div className="text-black/50 md:text-xl">BIRTHDAY</div>
             </div>
-            <h1 className="text-black/75 font-medium text-6xl leading-[1.4]">
+            <h1 className="text-black/75 font-medium text-4xl md:text-6xl leading-[1.4]">
               Oct 30, 2005
             </h1>
           </motion.div>
@@ -315,13 +324,13 @@ export default function HomePage() {
           <motion.div
             initial={{ opacity: 0, translateX: -100 }}
             whileInView={{ opacity: 1, translateX: 0 }}
-            viewport={{ once: true, amount: 'all' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 1 }}
           >
             <div className="flex gap-5 items-center">
-              <div className="text-black/50 text-xl">EDUCATION</div>
+              <div className="text-black/50 md:text-xl">EDUCATION</div>
             </div>
-            <h1 className="text-black/75 font-medium text-6xl leading-[1.4]">
+            <h1 className="text-black/75 font-medium text-4xl md:text-6xl leading-[1.4]">
               <div>
                 Hosan High School,
                 <br />
@@ -331,16 +340,28 @@ export default function HomePage() {
             <div className="pt-3 text-lg">Expected to graduate</div>
           </motion.div>
 
-          <div className="flex gap-4 items-center my-8">
+          <motion.div
+            className="flex gap-4 items-center my-8"
+            initial={{ opacity: 0, translateY: 50 }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+          >
             <hr className="w-full border-violet-600/20" />
             <h2 className="flex-shrink-0 text-zinc-700 font-light">
               Contact Me
             </h2>
             <hr className="w-full border-violet-600/20" />
-          </div>
+          </motion.div>
 
-          <div className="mx-12 grid grid-cols-3 gap-8 text-zinc-800/80">
-            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+          <div className="md:px-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 text-zinc-800/80">
+            <motion.div
+              className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5"
+              initial={{ opacity: 0, translateY: 50 }}
+              whileInView={{ opacity: 1, translateY: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            >
               <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
                 <TbMail />
                 <span>EMAIL</span>
@@ -352,9 +373,15 @@ export default function HomePage() {
               >
                 me@arpaap.dev
               </a>
-            </div>
+            </motion.div>
 
-            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+            <motion.div
+              className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5"
+              initial={{ opacity: 0, translateY: 50 }}
+              whileInView={{ opacity: 1, translateY: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            >
               <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
                 <TbBrandGithub />
                 <span>GitHub</span>
@@ -367,9 +394,15 @@ export default function HomePage() {
               >
                 @ArpaAP
               </a>
-            </div>
+            </motion.div>
 
-            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+            <motion.div
+              className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5"
+              initial={{ opacity: 0, translateY: 50 }}
+              whileInView={{ opacity: 1, translateY: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            >
               <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
                 <TbBrandInstagram />
                 <span>Instagram</span>
@@ -382,18 +415,30 @@ export default function HomePage() {
               >
                 @dev._.buyeon
               </a>
-            </div>
+            </motion.div>
 
-            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+            <motion.div
+              className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5"
+              initial={{ opacity: 0, translateY: 50 }}
+              whileInView={{ opacity: 1, translateY: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            >
               <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
                 <TbBrandDiscord />
                 <span>Discord</span>
               </div>
 
               <div className="text-zinc-700">@applekorea</div>
-            </div>
+            </motion.div>
 
-            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+            <motion.div
+              className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5"
+              initial={{ opacity: 0, translateY: 50 }}
+              whileInView={{ opacity: 1, translateY: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            >
               <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
                 <TbBrandX />
                 <span>X</span>
@@ -406,9 +451,15 @@ export default function HomePage() {
               >
                 @arpa_ap
               </a>
-            </div>
+            </motion.div>
 
-            <div className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5">
+            <motion.div
+              className="col-span-1 text-center bg-white/50 rounded-md shadow-lg px-4 py-5"
+              initial={{ opacity: 0, translateY: 50 }}
+              whileInView={{ opacity: 1, translateY: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            >
               <div className="flex justify-center gap-3 items-center text-xl font-medium pb-2">
                 <TbBrandLinkedin />
                 <span>Linkedin</span>
@@ -421,14 +472,64 @@ export default function HomePage() {
               >
                 @arpaap
               </a>
-            </div>
+            </motion.div>
           </div>
         </section>
       </div>
 
-      <div className="bg-gradient-to-br from-violet-500 to-sky-600 text-white">
-        <section className="container mx-auto px-24 py-12 min-h-screen">
-          <h1 className="font-semibold pb-8">getProjects()</h1>
+      <div className="relative text-white bg-zinc-800">
+        <section className="container mx-auto px-24 py-12 min-h-screen flex flex-col gap-8">
+          <div className="flex justify-between items-center">
+            <h1 className="font-semibold">Projects</h1>
+            <button
+              type="button"
+              className="flex gap-2 items-center border border-zinc-600 rounded-lg text-sm text-white px-4 py-2 hover:bg-white/10 transition-all duration-300"
+            >
+              <TbList />
+              SHOW ALL
+            </button>
+          </div>
+
+          <div className="flex-grow flex flex-col justify-center w-1/2 px-16 mr-auto">
+            {' '}
+            <h1 className="text-7xl pb-4">Aztra</h1>
+            <div className="text-xl font-medium">
+              웹 대시보드를 지원하는 Discord 관리 챗봇
+            </div>
+            <hr className="border-zinc-700/50 my-8" />
+            <div className="flex gap-4">
+              <a href="https://aztra.xyz" target="_blank">
+                <button
+                  type="button"
+                  className="bg-[#6D28D9] rounded-lg text-white px-4 py-2"
+                >
+                  사이트 방문하기
+                </button>
+              </a>
+              <button
+                type="button"
+                className="bg-white rounded-lg text-black px-4 py-2"
+              >
+                자세히 알아보기
+              </button>
+            </div>
+          </div>
+
+          <div className="absolute -z-10 flex justify-center items-center top-36 bottom-0 inset-x-0 h-2/3 shadow-inner"></div>
+
+          <div className="absolute z-30 inset-x-0 bottom-0 flex gap-4 justify-center py-8">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="rounded-full w-3 h-3 bg-white" />
+            ))}
+          </div>
+
+          <div className="absolute inset-y-0 left-0 flex items-center ml-5 text-6xl text-zinc-500">
+            <TbChevronLeft />
+          </div>
+
+          <div className="absolute inset-y-0 right-0 flex items-center mr-5 text-6xl text-zinc-500">
+            <TbChevronRight />
+          </div>
         </section>
       </div>
     </motion.main>
