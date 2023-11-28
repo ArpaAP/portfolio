@@ -4,15 +4,14 @@ import {
   TbChevronsDown,
   TbBrandGithub,
   TbMail,
-  TbPhone,
   TbBrandInstagram,
   TbBrandDiscord,
   TbBrandX,
   TbBrandLinkedin,
-  TbBrandSamsungpass,
   TbList,
   TbChevronLeft,
   TbChevronRight,
+  TbBrandGooglePlay,
 } from 'react-icons/tb'
 import { FaGithub } from 'react-icons/fa'
 import {
@@ -27,11 +26,14 @@ import {
 } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import classNames from 'classnames'
+import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
+import { Carousel } from 'react-responsive-carousel'
 
 export default function HomePage() {
   const { scrollY } = useScroll()
 
   const [currentSection, setCurrentSection] = useState(0)
+  const [projectIndex, setProjectIndex] = useState(0)
 
   const [visibleIntroText, setVisibleIntroText] = useState(false)
 
@@ -490,46 +492,444 @@ export default function HomePage() {
             </button>
           </div>
 
-          <div className="flex-grow flex flex-col justify-center w-1/2 px-16 mr-auto">
-            {' '}
-            <h1 className="text-7xl pb-4">Aztra</h1>
-            <div className="text-xl font-medium">
-              웹 대시보드를 지원하는 Discord 관리 챗봇
-            </div>
-            <hr className="border-zinc-700/50 my-8" />
-            <div className="flex gap-4">
-              <a href="https://aztra.xyz" target="_blank">
+          <Carousel
+            className="absolute top-28 bottom-0 inset-x-0 flex-grow"
+            renderArrowPrev={(clickHandler) => {
+              return (
                 <button
                   type="button"
-                  className="bg-[#6D28D9] rounded-lg text-white px-4 py-2"
+                  className="absolute z-50 inset-y-0 left-0 flex items-center ml-5 text-6xl text-zinc-500"
+                  onClick={clickHandler}
                 >
-                  사이트 방문하기
+                  <TbChevronLeft />
                 </button>
-              </a>
-              <button
-                type="button"
-                className="bg-white rounded-lg text-black px-4 py-2"
-              >
-                자세히 알아보기
-              </button>
+              )
+            }}
+            renderArrowNext={(clickHandler) => {
+              return (
+                <button
+                  type="button"
+                  className="absolute z-50 inset-y-0 right-0 flex items-center mr-5 text-6xl text-zinc-500"
+                  onClick={clickHandler}
+                >
+                  <TbChevronRight />
+                </button>
+              )
+            }}
+            showThumbs={false}
+            showStatus={false}
+            infiniteLoop
+          >
+            <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
+              <h1 className="text-7xl pb-4">Aztra</h1>
+              <div className="text-xl font-medium">
+                웹 대시보드를 지원하는 Discord 관리 챗봇 & 웹 대시보드 서비스
+              </div>
+
+              <div className="flex gap-4 mt-10 mb-8">
+                <a href="https://aztra.xyz" target="_blank">
+                  <button
+                    type="button"
+                    className="bg-[#6D28D9] rounded-lg text-white px-4 py-2"
+                  >
+                    사이트 방문하기
+                  </button>
+                </a>
+                <button type="button" className="rounded-lg px-4 py-2">
+                  자세히 알아보기
+                </button>
+              </div>
+
+              <hr className="border-zinc-700/50 w-full my-6" />
+
+              <div className="flex flex-col gap-3 items-start">
+                <div>2020.08.31 ~ 진행 중 / 이용 채팅방 수 8,000곳 이상</div>
+                <div className="flex flex-wrap gap-2 w-2/3">
+                  <span>태그: </span>
+                  {[
+                    '대형 프로젝트',
+                    'Web',
+                    'Full-stack',
+                    'React',
+                    'Next.js',
+                    'SSR',
+                    'Web Dashboard',
+                    '관리자 페이지',
+                    'Node.js',
+                    'Express',
+                    'TypeScript',
+                    'MySQL',
+                  ].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+
+            <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
+              <h1 className="text-7xl pb-4">호산고 알리미</h1>
+              <div className="text-xl font-medium">
+                더 나은 호산고등학교 생활을 도와줄 통합 학업 관리 애플리케이션
+              </div>
+
+              <div className="flex gap-4 mt-10 mb-8">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.hosandevlab.hosan_notice"
+                  target="_blank"
+                >
+                  <button
+                    type="button"
+                    className="bg-[#12935F] rounded-lg flex gap-2 items-center text-white px-4 py-2"
+                  >
+                    <TbBrandGooglePlay />
+                    Google Play 페이지 방문하기
+                  </button>
+                </a>
+                <button type="button" className="rounded-lg px-4 py-2">
+                  자세히 알아보기
+                </button>
+              </div>
+
+              <hr className="border-zinc-700/50 w-full my-6" />
+
+              <div className="flex flex-col gap-3 items-start">
+                <div>2021.09.17 ~ 진행 중 / 고1 여름 프로젝트</div>
+                <div className="flex flex-wrap gap-2 w-2/3">
+                  <span>태그: </span>
+                  {[
+                    '교육',
+                    '일정 관리',
+                    'Android',
+                    'iOS',
+                    'Flutter',
+                    'Cross-platform',
+                    'Node.js',
+                    'TypeScript',
+                    'Express',
+                    'MongoDB',
+                    'BLE Beacon',
+                    'IoT',
+                  ].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
+              <h1 className="text-7xl pb-4">Mollang</h1>
+              <div className="text-xl font-medium">몰?루 프로그래밍 언어</div>
+
+              <div className="flex gap-4 mt-10 mb-8">
+                <a href="https://molu.vercel.app" target="_blank">
+                  <button
+                    type="button"
+                    className="bg-white rounded-lg text-black px-4 py-2"
+                  >
+                    웹 인터프리터 방문하기
+                  </button>
+                </a>
+                <a href="https://github.com/ArpaAP/mollang" target="_blank">
+                  <button type="button" className="rounded-lgpx-4 py-2">
+                    언어 명세 자세히 보기
+                  </button>
+                </a>
+              </div>
+
+              <hr className="border-zinc-700/50 w-full my-6" />
+
+              <div className="flex flex-col gap-3 items-start">
+                <div>2022.2.8 ~ 2022.2.24 / 고1 봄방학 팀프로젝트</div>
+                <div className="flex flex-wrap gap-2 w-3/4">
+                  <span>태그: </span>
+                  {['C++', 'Node.js', '인터프리터'].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
+              <h1 className="text-7xl pb-4">CafeIN</h1>
+              <div className="text-xl font-medium">
+                내 주변 카페 탐색 및 카페 다이어리 서비스
+              </div>
+
+              <div className="flex gap-4 mt-10 mb-8">
+                <button type="button" className="rounded-lg px-4 py-2">
+                  자세히 알아보기
+                </button>
+              </div>
+
+              <hr className="border-zinc-700/50 w-full my-6" />
+
+              <div className="flex flex-col gap-3 items-start">
+                <div>2022.4.22 ~ 2022.11.30 / 고2 동아리 프로젝트</div>
+                <div className="flex flex-wrap gap-2 w-3/4">
+                  <span>태그: </span>
+                  {[
+                    'Android',
+                    'iOS',
+                    'Flutter',
+                    'Cross-platform',
+                    '지도 API 연동',
+                  ].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
+              <h1 className="text-7xl pb-4">Alpha Mirror</h1>
+              <div className="text-xl font-medium">
+                하이브리드 웹 프레임워크 기반 스마트미러
+              </div>
+
+              <div className="flex gap-4 mt-10 mb-8">
+                <button type="button" className="rounded-lg px-4 py-2">
+                  자세히 알아보기
+                </button>
+              </div>
+
+              <hr className="border-zinc-700/50 w-full my-6" />
+
+              <div className="flex flex-col gap-3 items-start">
+                <div>
+                  2022.9.22 ~ 2022.11.11 / 고2 [로봇 하드웨어 개발] 과목
+                  프로젝트
+                </div>
+                <div className="flex flex-wrap gap-2 w-3/4">
+                  <span>태그: </span>
+                  {[
+                    'Hybrid App',
+                    'Raspberry Pi',
+                    'Arduino',
+                    'Linux',
+                    '하드웨어 연동',
+                    'React',
+                    'Vite',
+                    'Typescript',
+                    'Python',
+                    'Rust',
+                    '시스템프로그래밍',
+                  ].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
+              <h1 className="text-7xl pb-4">Social Trend</h1>
+              <div className="text-xl font-medium">
+                크롤링 + BERT모델 기반 사회 이슈 키워드 추출
+              </div>
+
+              <div className="flex gap-4 mt-10 mb-8">
+                <button type="button" className="rounded-lg px-4 py-2">
+                  자세히 알아보기
+                </button>
+              </div>
+
+              <hr className="border-zinc-700/50 w-full my-6" />
+
+              <div className="flex flex-col gap-3 items-start">
+                <div>
+                  2022.10.25 ~ 2022.11.9 / 고2 [응용 프로그래밍 개발] 과목
+                  프로젝트
+                </div>
+                <div className="flex flex-wrap gap-2 w-3/4">
+                  <span>태그: </span>
+                  {[
+                    'Python',
+                    'Deep Learning',
+                    'NLP',
+                    'BERT',
+                    'Web Crawling',
+                    '키워드 추출',
+                  ].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
+              <h1 className="text-7xl pb-4">AWIN</h1>
+              <div className="text-xl font-medium">
+                간단한 아두이노 자동 창문
+              </div>
+
+              <div className="flex gap-4 mt-10 mb-8">
+                <button type="button" className="rounded-lg px-4 py-2">
+                  자세히 알아보기
+                </button>
+              </div>
+
+              <hr className="border-zinc-700/50 w-full my-6" />
+
+              <div className="flex flex-col gap-3 items-start">
+                <div>
+                  2023.5.4 ~ 2023.6.16 / 고3 [로보프로젝트] 과목 프로젝트
+                </div>
+                <div className="flex flex-wrap gap-2 w-1/2">
+                  <span>태그: </span>
+                  {[
+                    'Bluetooth 시리얼 통신',
+                    '원격 제어',
+                    'IoT',
+                    '서버리스',
+                    'Arduino',
+                    'Raspberry Pi',
+                    'Flutter',
+                    'Android',
+                    'iOS',
+                    'Cross-platform',
+                    'Python',
+                    'Node.js',
+                    'Nest.js',
+                    'Socket.io',
+                    '비동기 프로그래밍',
+                  ].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
+              <h1 className="text-7xl pb-4">CSAT Simulator</h1>
+              <div className="text-xl font-medium">
+                대학수학능력시험 안내방송 시뮬레이터
+              </div>
+
+              <div className="flex gap-4 mt-10 mb-8">
+                <a href="https://csat.vercel.app" target="_blank">
+                  <button
+                    type="button"
+                    className="bg-white rounded-lg text-black px-4 py-2"
+                  >
+                    사이트 방문하기
+                  </button>
+                </a>
+                <button type="button" className="rounded-lg px-4 py-2">
+                  자세히 알아보기
+                </button>
+              </div>
+
+              <hr className="border-zinc-700/50 w-full my-6" />
+
+              <div className="flex flex-col gap-3 items-start">
+                <div>
+                  2023.5.9 ~ 2023.5.13 / 2024 수능 모의 시뮬레이션을 위해
+                  개인적으로 제작한 웹앱 / 2024학년도 기준
+                </div>
+                <div className="flex flex-wrap gap-2 w-1/2">
+                  <span>태그: </span>
+                  {[
+                    '시뮬레이션',
+                    'React',
+                    'Next.js',
+                    'SSR',
+                    'HTML5 Audio API',
+                  ].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
+              <h1 className="text-7xl pb-4">Physika</h1>
+              <div className="text-xl font-medium">
+                뉴턴의 운동법칙에 기반한 역학 시뮬레이터
+              </div>
+
+              <div className="flex gap-4 mt-10 mb-8">
+                <a href="https://physika.vercel.app" target="_blank">
+                  <button
+                    type="button"
+                    className="bg-white rounded-lg text-black px-4 py-2"
+                  >
+                    사이트 방문하기
+                  </button>
+                </a>
+                <button type="button" className="rounded-lg px-4 py-2">
+                  자세히 알아보기
+                </button>
+              </div>
+
+              <hr className="border-zinc-700/50 w-full my-6" />
+
+              <div className="flex flex-col gap-3 items-start">
+                <div>
+                  2023.7.7 ~ 2023.7.12 / 물리학Ⅰ, 물리학Ⅱ 교과과정의 역학 및
+                  에너지 단원에 기반한 물리 시뮬레이터
+                </div>
+                <div className="flex flex-wrap gap-2 w-1/2">
+                  <span>태그: </span>
+                  {[
+                    '시뮬레이션',
+                    '물리 엔진',
+                    '샌드박스',
+                    'React',
+                    'Next.js',
+                    'SSR',
+                  ].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Carousel>
 
           <div className="absolute -z-10 flex justify-center items-center top-36 bottom-0 inset-x-0 h-2/3 shadow-inner"></div>
-
-          <div className="absolute z-30 inset-x-0 bottom-0 flex gap-4 justify-center py-8">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="rounded-full w-3 h-3 bg-white" />
-            ))}
-          </div>
-
-          <div className="absolute inset-y-0 left-0 flex items-center ml-5 text-6xl text-zinc-500">
-            <TbChevronLeft />
-          </div>
-
-          <div className="absolute inset-y-0 right-0 flex items-center mr-5 text-6xl text-zinc-500">
-            <TbChevronRight />
-          </div>
         </section>
       </div>
     </motion.main>
