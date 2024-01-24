@@ -607,6 +607,8 @@ export default function HomePage() {
                     'Android',
                     'iOS',
                     'Flutter',
+                    'Kotlin',
+                    'Swift',
                     'Cross-platform',
                     'Node.js',
                     'TypeScript',
@@ -628,7 +630,10 @@ export default function HomePage() {
 
             <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
               <h1 className="text-7xl pb-4">Mollang</h1>
-              <div className="text-xl font-medium">몰?루 프로그래밍 언어</div>
+              <div className="text-xl font-medium">
+                모바일 게임 &apos;블루아카이브&apos;에서의 인터넷 밈
+                &apos;몰?루&apos;를 소재로 만든 난해한 프로그래밍 언어
+              </div>
 
               <div className="flex gap-4 mt-10 mb-8">
                 <a href="https://molu.vercel.app" target="_blank">
@@ -652,14 +657,16 @@ export default function HomePage() {
                 <div>2022.2.8 ~ 2022.2.24 / 고1 봄방학 팀프로젝트</div>
                 <div className="flex flex-wrap gap-2 w-3/4">
                   <span>태그: </span>
-                  {['C++', 'Node.js', '인터프리터'].map((tag, index) => (
-                    <div
-                      key={index}
-                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
-                    >
-                      {tag}
-                    </div>
-                  ))}
+                  {['C++', 'Node.js', 'esolang', '인터프리터'].map(
+                    (tag, index) => (
+                      <div
+                        key={index}
+                        className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                      >
+                        {tag}
+                      </div>
+                    ),
+                  )}
                 </div>
               </div>
             </div>
@@ -727,6 +734,7 @@ export default function HomePage() {
                     'Arduino',
                     'Linux',
                     '하드웨어 연동',
+                    'IPC통신',
                     'React',
                     'Vite',
                     'Typescript',

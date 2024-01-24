@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Navbar from '@/components/Navbar'
 import './globals.css'
-import Head from 'next/head'
-import Script from 'next/script'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 export const metadata: Metadata = {
