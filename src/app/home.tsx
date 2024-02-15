@@ -300,7 +300,7 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0 }}
           >
-            <div className="flex gap-5 items-center">
+            <div className="flex gap-5 items-center pb-3">
               <div className="text-black/50 md:text-xl">MY NAME IS</div>
             </div>
             <h1 className="text-black/75 font-medium text-4xl md:text-6xl leading-[1.4]">
@@ -315,7 +315,7 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.5 }}
           >
-            <div className="flex flex-row-reverse gap-5 items-center">
+            <div className="flex flex-row-reverse gap-5 items-center pb-3">
               <div className="text-black/50 md:text-xl">BIRTHDAY</div>
             </div>
             <h1 className="text-black/75 font-medium text-4xl md:text-6xl leading-[1.4]">
@@ -329,17 +329,23 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 1 }}
           >
-            <div className="flex gap-5 items-center">
+            <div className="flex gap-5 items-center pb-3">
               <div className="text-black/50 md:text-xl">EDUCATION</div>
             </div>
             <h1 className="text-black/75 font-medium text-4xl md:text-6xl leading-[1.4]">
-              <div>
-                Hosan High School,
-                <br />
-                3rd Grade (2023)
+              <div className="pb-5">
+                경북대학교{' '}
+                <span className="text-3xl md:text-4xl font-normal">
+                  (Kyungpook National University)
+                </span>
+              </div>
+              <div className="text-2xl font-light">
+                IT대학 컴퓨터학부 24학번{' '}
+                <span className="text-lg">
+                  (Computer Science and Engineering, College of IT Engineering)
+                </span>
               </div>
             </h1>
-            <div className="pt-3 text-lg">Expected to graduate</div>
           </motion.div>
 
           <motion.div
