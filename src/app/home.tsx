@@ -554,6 +554,7 @@ export default function HomePage() {
                   <span>태그: </span>
                   {[
                     '대형 프로젝트',
+                    '챗봇',
                     'Web',
                     'Full-stack',
                     'React',
@@ -701,6 +702,54 @@ export default function HomePage() {
                     'Flutter',
                     'Cross-platform',
                     '지도 API 연동',
+                  ].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/10 rounded-lg px-1 py-0.5 text-sm"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[calc(100vh-9rem)] flex flex-col justify-center items-start px-48 mr-auto">
+              <h1 className="text-7xl pb-4">2¹²</h1>
+              <div className="text-xl font-medium">
+                Discord에서 즐기는 2048 미니게임
+              </div>
+
+              <div className="flex gap-4 mt-10 mb-8">
+                <a href="https://4096.inft.kr" target="_blank">
+                  <button
+                    type="button"
+                    className="bg-[#E62F41] rounded-lg text-white px-4 py-2"
+                  >
+                    사이트 방문하기
+                  </button>
+                </a>
+                <button type="button" className="rounded-lg px-4 py-2">
+                  자세히 알아보기
+                </button>
+              </div>
+
+              <hr className="border-zinc-700/50 w-full my-6" />
+
+              <div className="flex flex-col gap-3 items-start">
+                <div>2022.08</div>
+                <div className="flex flex-wrap gap-2 w-2/3">
+                  <span>태그: </span>
+                  {[
+                    '챗봇',
+                    'Web',
+                    '인터랙티브 웹',
+                    '스크롤 애니메이션',
+                    'SPA',
+                    'React',
+                    'Next.js',
+                    'Node.js',
+                    'TypeScript',
                   ].map((tag, index) => (
                     <div
                       key={index}
@@ -878,6 +927,7 @@ export default function HomePage() {
                   <span>태그: </span>
                   {[
                     '시뮬레이션',
+                    '인터랙티브 웹',
                     'React',
                     'Next.js',
                     'SSR',
@@ -926,6 +976,7 @@ export default function HomePage() {
                   {[
                     '시뮬레이션',
                     '물리 엔진',
+                    '인터랙티브 웹',
                     '샌드박스',
                     'React',
                     'Next.js',
