@@ -643,7 +643,7 @@ export default function HomePage() {
               </div>
 
               <div className="flex gap-4 mt-10 mb-8">
-                <a href="https://molu.vercel.app" target="_blank">
+                <a href="https://molu.arpaap.dev" target="_blank">
                   <button
                     type="button"
                     className="bg-white rounded-lg text-black px-4 py-2"
@@ -903,7 +903,7 @@ export default function HomePage() {
               </div>
 
               <div className="flex gap-4 mt-10 mb-8">
-                <a href="https://csat.vercel.app" target="_blank">
+                <a href="https://csat.arpaap.dev" target="_blank">
                   <button
                     type="button"
                     className="bg-white rounded-lg text-black px-4 py-2"
@@ -951,7 +951,7 @@ export default function HomePage() {
               </div>
 
               <div className="flex gap-4 mt-10 mb-8">
-                <a href="https://physika.vercel.app" target="_blank">
+                <a href="https://physika.arpaap.dev" target="_blank">
                   <button
                     type="button"
                     className="bg-white rounded-lg text-black px-4 py-2"
