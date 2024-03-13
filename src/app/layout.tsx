@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import Navbar from '@/components/Navbar'
 import './globals.css'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Buyeon Hwang',
@@ -23,7 +24,6 @@ export default function RootLayout({
         {process.env.GA_TRACKING_ID && (
           <GoogleAnalytics gaId={process.env.GA_TRACKING_ID} />
         )}
-        <Navbar />
         <div>{children}</div>
       </body>
     </html>
